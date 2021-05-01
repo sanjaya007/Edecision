@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Edecision</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+      integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w=="
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="logo-box">
+      <img src="./images/logo.png" alt="logo" />
+    </div>
+    <div class="main-container">
+      <div class="form-box container-box">
+        <form>
+          <div class="warning mb-3">
+            <span class="text-muted">**All fields are required !! </span>
+          </div>
+          <div class="section section1">
+            <div class="input-box">
+              <label for="your-name" class="form-label">Your Name *</label>
+              <input
+                type="text"
+                class="form-control"
+                id="your-name"
+                autocomplete="off"
+                required="required"
+              />
+            </div>
+            <div class="input-box">
+              <label for="email" class="form-label">Email address *</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                autocomplete="off"
+                required
+              />
+              <small class="form-text text-muted">
+                Please enter a valid email address
+              </small>
+            </div>
+            <div class="input-box form-check">
+              <input type="checkbox" class="form-check-input" id="wantMail" />
+              <label class="want-mail" for="want-mail">Want Mail ?</label>
+            </div>
+          </div>
+          <div class="section section2 hidden">
+            <div class="input-box">
+              <label for="facility-name" class="form-label"
+                >Facility Name *</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="facility-name"
+                autocomplete="off"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label for="facility-name" class="form-label"
+                >Facility Postal Code / Zip Code *</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                id="postal-code"
+                autocomplete="off"
+                required
+              />
+              <small class="form-text text-muted"> </small>
+            </div>
+          </div>
+          <div class="section section3 hidden">
+            <div class="input-box">
+              <label for="disabledSelect" class="form-label"
+                >Primary Purpose *
+              </label>
+              <select
+                id="primary-purpose"
+                class="form-select .form-control"
+              ></select>
+            </div>
+            <div class="input-box">
+              <label for="disabledSelect" class="form-label"
+                >Facility Size *
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                id="facility-size"
+                data-type="num"
+                required
+              />
+              <small class="form-text text-muted"
+                >Required unit : m<sup>2</sup>
+              </small>
+            </div>
+            <div class="input-box">
+              <label for="facility-name" class="form-label"
+                >Occupancy / Number People *</label
+              >
+              <input
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                id="people-no"
+                data-type="num"
+                required
+              />
+            </div>
+            <div class="input-box">
+              <label for="facility-name" class="form-label"
+                >Electricity Consumption *
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                id="electricity-consumption"
+                data-type="num"
+                required
+              />
+              <small class="form-text text-muted"
+                >Required unit : kWh/year
+              </small>
+            </div>
+            <div class="input-box">
+              <label for="facility-name" class="form-label"
+                >Nat Gas Consumption *
+              </label>
+              <input
+                type="text"
+                class="form-control"
+                id="gas-consumption"
+                autocomplete="off"
+                data-type="num"
+                required
+              />
+              <small class="form-text text-muted"
+                >Required unit : GJ/year
+              </small>
+            </div>
+            <div class="btn-box">
+              <button type="submit" class="btn btn-primary compute-btn">
+                Compute
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="final-box container-box">
+        <!-- postal code details  -->
+        <div class="details hidden">
+          <div class="info">
+            <p>
+              Facility Name :
+              <span class="facility-name-span"> </span>
+            </p>
+            <p>Prov/State : <span class="province-span"> </span></p>
+            <p>Country : <span class="country-span"> </span></p>
+            <p>Postal Code : <span class="postal-code-span"> </span></p>
+            <p>City : <span class="city-span"> </span></p>
+          </div>
+          <div class="ghg">
+            <p>
+              GHG in Grid Electricity in your region <br />
+              <span class="ghg-elec-span"> </span>
+            </p>
+            <p>
+              GHG in Natural Gas <br />
+              <span class="ghg-gas-span"> </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- result 1  -->
+        <div class="final-result">
+          <div class="box result-box hidden">
+            <h1>Energy Consumption</h1>
+            <div class="info">
+              <div class="elec inner-box">
+                <img src="./images/elec.png" alt="icon" />
+                <div class="data">
+                  <p class="electricity-consumption-span"></p>
+                  <span> Electricity </span>
+                </div>
+              </div>
+              <div class="heating inner-box">
+                <img src="./images/heat.png" alt="icon" />
+                <div class="data">
+                  <p class="heating-span"></p>
+                  <span> Heating </span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box result-box hidden">
+            <h1>GHG Emissions</h1>
+            <div class="info">
+              <div class="emission inner-box">
+                <img src="./images/cloud.png" alt="icon" />
+                <div class="data">
+                  <p class="ghg-emission-span"></p>
+                  <span> GHG Emissions </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- result 2 -->
+        <div class="final-result">
+          <div class="box result-box hidden">
+            <h1>
+              Energy Use Intensity (
+              <span class="energy-intensity-span"></span>
+              GJ/m<sup>2</sup>)
+            </h1>
+            <div class="bar-info">
+              <div class="bar">
+                <span> 0 </span>
+                <span class="eui-last-range"> </span>
+                <div class="caret caret-down eui-facility-caret">
+                  <p class="bar-facility-name">Test</p>
+                  <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="caret caret-up eui-average-caret">
+                  <i class="fas fa-caret-up"></i>
+                  <p class="average-bar-eui"></p>
+                  <h5 title="Industry Average" class="industry-average">
+                    Ind Avg.
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box result-box hidden">
+            <h1>
+              Carbon Intensity (
+              <span class="carbon-intensity-span"></span>
+              kg/m<sup>2</sup>)
+            </h1>
+            <div class="bar-info">
+              <div class="bar">
+                <span> 0 </span>
+                <span class="carbon-intensity-last-range"> </span>
+                <div class="caret caret-down ci-facility-caret">
+                  <p class="bar-facility-name"></p>
+                  <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="caret caret-up ci-average-caret">
+                  <i class="fas fa-caret-up"></i>
+                  <p class="average-bar-carbon"></p>
+                  <h5 title="Industry Average" class="industry-average">
+                    Ind Avg.
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- result 3  -->
+        <div class="final-result">
+          <div class="box result-box hidden">
+            <canvas id="myChart"> </canvas>
+            <div class="index">
+              <p class="index-title">With GHG sources</p>
+              <div class="pie-value elec">
+                <div class="color"></div>
+                <p>Electricity : <span class="pie-elec"></span></p>
+              </div>
+              <div class="pie-value gas">
+                <div class="color"></div>
+                <p>Natural Gas : <span class="pie-gas"></span></p>
+              </div>
+            </div>
+          </div>
+          <div class="box result-box hidden">
+            <h1>
+              Carbon Intensity (
+              <span class="carbon-intensity-person-span"></span>
+              kg/person)
+            </h1>
+            <div class="bar-info">
+              <div class="bar">
+                <span> 0 </span>
+                <span class="carbon-intensity-people-last-range"> </span>
+                <div class="caret caret-down cip-facility-caret">
+                  <p class="bar-facility-name"></p>
+                  <i class="fas fa-caret-down"></i>
+                </div>
+                <div class="caret caret-up cip-average-caret">
+                  <i class="fas fa-caret-up"></i>
+                  <p class="average-bar-carbon-people"></p>
+                  <h5 title="Industry Average" class="industry-average">
+                    Ind Avg.
+                  </h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="final-result">
+          <div class="box result-box second-pie hidden">
+            <canvas id="myChart1"> </canvas>
+            <div class="index">
+              <p class="index-title">With energy sources</p>
+              <div class="pie-value elec">
+                <div class="color"></div>
+                <p>Electricity : <span class="pie-elec1"></span></p>
+              </div>
+              <div class="pie-value gas">
+                <div class="color"></div>
+                <p>Natural Gas : <span class="pie-gas1"></span></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="./js/script.js"></script>
+  </body>
+</html>
